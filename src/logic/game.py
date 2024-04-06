@@ -1,5 +1,20 @@
+import re
+
 class Game:
     """A class for handling game logic"""
+
+    def play(self, action_1, action_2):
+        """A method called to record and score a game"""
+
+        # Check validity
+        self.validate(action_1)
+        self.validate(action_2)
+
+    def validate(self, input):
+        """A method for checking that input is valid"""
+        input = input.upper()
+        return input if re.match(r"^(R|P|S)$", input) else False
+
 
     def result(self, action_1, action_2):
         """A method for scoring a Rock-Paper-Scissors game"""
