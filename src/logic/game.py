@@ -1,4 +1,7 @@
+"""A module for handling game logic"""
+
 import re
+
 
 class Game:
     """A class for handling game logic"""
@@ -12,7 +15,7 @@ class Game:
         if not action_1 and action_2:
             print("Error! Invalid input.")
             return
-        
+
         # Scoring play
         return self.result(action_1, action_2)
 
@@ -20,7 +23,6 @@ class Game:
         """A method for checking that input is valid"""
         input = input.upper()
         return input if re.match(r"^(R|P|S)$", input) else False
-
 
     def result(self, action_1, action_2):
         """A method for scoring a Rock-Paper-Scissors game"""
