@@ -7,8 +7,14 @@ class Game:
         """A method called to record and score a game"""
 
         # Check validity
-        self.validate(action_1)
-        self.validate(action_2)
+        action_1 = self.validate(action_1)
+        action_2 = self.validate(action_2)
+        if not action_1 and action_2:
+            print("Error! Invalid input.")
+            return
+        
+        # Scoring play
+        return self.result(action_1, action_2)
 
     def validate(self, input):
         """A method for checking that input is valid"""
