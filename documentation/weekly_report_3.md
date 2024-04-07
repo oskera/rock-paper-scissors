@@ -27,4 +27,4 @@ I was sick for past two weeks so progress has been slow. The choice of data stru
 
 ## What's next?
 
-I will write the code for implementing Markov Chains and a simple CLI.
+I will write the code for implementing Markov chains and a simple CLI.
