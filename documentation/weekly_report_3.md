@@ -23,7 +23,7 @@ I learned a lot about Markov chains. The original [paper](https://arxiv.org/pdf/
 
 ## Problems encountered
 
-I was sick for past two weeks so progress has been slow. The choice of data structure is still open, I will start with a list, trying to imitate the AI in the paper I was inspired by. I might experiment with other data structures later to see if there is difference in performance.
+I was sick for past two weeks so progress has been slow. The choice of data structure is still open, I will start with a list. trying to imitate the AI in the paper I was inspired by. I might experiment with other data structures later to see if there is difference in performance.
 
 ## What's next?
 
