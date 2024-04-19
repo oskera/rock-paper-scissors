@@ -6,6 +6,8 @@ import re
 class Game:
     """A class for handling game logic"""
 
+    action_history = ""
+
     def play(self, action_1, action_2):
         """A method called to record and score a game"""
 
@@ -16,6 +18,8 @@ class Game:
             print("Error! Invalid input.")
             return
 
+        self.update_action_history(action_1)
+
         # Scoring play
         return self.result(action_1, action_2)
 
@@ -23,6 +27,9 @@ class Game:
         """A method for checking that input is valid"""
         input = input.upper()
         return input if re.match(r"^(R|P|S)$", input) else False
+    
+    def update_action_history(self, action):
+        self.action_history = self.action_history + action
 
     def result(self, action_1, action_2):
         """A method for scoring a Rock-Paper-Scissors game"""
