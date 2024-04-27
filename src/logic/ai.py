@@ -19,7 +19,8 @@ class MultiAI:
             self.singles = self.singles + [AI(self.game, i)]
 
     def get_action(self):
-        return self.get_singles_actions()[self.get_best()]
+        actions = self.get_singles_actions()
+        return actions[self.get_best()]
 
     def get_singles_actions(self):
         actions = []

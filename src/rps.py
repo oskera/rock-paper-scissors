@@ -1,13 +1,15 @@
 """Main module"""
 
 from logic.game import Game
-from logic.ai import AI
+from logic.ai import MultiAI
 
 game = Game()
-ai = AI(game, 1)
-game.play('R', 'P')
-game.play('R', 'R')
-game.play('R', 'R')
-game.play('P', 'P')
-game.play('R', 'P')
-print(ai.get_action())
+ai = MultiAI(game, 3)
+
+game.play('P', ai.get_action())
+game.play('P', ai.get_action())
+game.play('P', ai.get_action())
+game.play('P', ai.get_action())
+game.play('P', ai.get_action())
+game.play('P', ai.get_action())
+print(game.winlose)

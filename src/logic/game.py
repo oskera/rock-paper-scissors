@@ -7,6 +7,7 @@ class Game:
     """A class for handling game logic"""
 
     action_history = ""
+    winlose = [0, 0, 0]    # [ai wins, draw, player wins]
 
     def play(self, action_1, action_2):
         """A method called to record and score a game"""
@@ -21,13 +22,15 @@ class Game:
         self.update_action_history(action_1)
 
         # Scoring play
-        return self.result(action_1, action_2)
+        result = self.result(action_1, action_2)
+        self.update_winlose(result)
+        return result
 
     def validate(self, input):
         """A method for checking that input is valid"""
         input = input.upper()
         return input if re.match(r"^(R|P|S)$", input) else False
-    
+
     def update_action_history(self, action):
         self.action_history = self.action_history + action
 
@@ -43,3 +46,6 @@ class Game:
             return 1
         else:
             return -1
+
+    def update_winlose(self, result):
+        self.winlose[result + 1] = self.winlose[result + 1] + 1
