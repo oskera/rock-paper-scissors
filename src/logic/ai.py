@@ -18,11 +18,20 @@ class MultiAI:
         for i in range(1, f + 1):
             self.singles = self.singles + [AI(self.game, i)]
 
-    def get_best(self):
-        winrate = []
+    def get_action(self):
+        return self.get_singles_actions()[self.get_best()]
+
+    def get_singles_actions(self):
+        actions = []
         for ai in self.singles:
-            winrate = winrate + [ai.get_win_rate()]
-        return winrate.index(max(winrate))
+            actions = actions + [ai.get_action()]
+        return actions
+
+    def get_best(self):
+        win_rates = []
+        for ai in self.singles:
+            win_rates = win_rates + [ai.get_win_rate()]
+        return win_rates.index(max(win_rates))
 
 class AI:
     """Single AI with n-length memory"""
@@ -67,9 +76,11 @@ class AI:
         return self.game.action_history[-self.n:]
 
     def get_win_rate(self):
+        wins = 0
         recent_self = self.get_recent_self()
         recent_opponent = self.get_recent_opponent()
-        wins = 0
+        if len(recent_opponent) < self.n:
+            return wins/self.n
         for i in range(0, self.n):
             action_self = recent_self[i]
             action_opponent = recent_opponent[i]
