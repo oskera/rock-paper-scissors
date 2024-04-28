@@ -13,6 +13,14 @@ class Trie:
             current = current.children[c]
             current.frequency += 1
 
+    def search(self, sequence):
+        current = self.root
+        for c in sequence:
+            if c not in current.children:
+                return 0
+            current = current.children[c]
+            return current.frequency
+
 class Node:
 
     children = None
@@ -20,4 +28,4 @@ class Node:
 
     def __init__(self):
         self.children = {}
-        self.frequency = 1
+        self.frequency = 0
