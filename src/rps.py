@@ -1,13 +1,9 @@
 """Main module"""
 
-from logic.trie import Trie
+from logic.game import Game
+from logic.ai import MultiAI
+from ui.cli import CLI
 
-trie = Trie()
-trie.insert("RPS")
-trie.insert("RP")
-trie.insert("PS")
-
-print(trie.search("R"))
-print(trie.search("RP"))
-print(trie.search("RPS"))
-print(trie.search("P"))
+game = Game()
+cli = CLI(game, MultiAI(game, 5))
+cli.run()
