@@ -16,7 +16,7 @@ class MultiAI:
 
     def initialize_singles(self, f):
         for i in range(1, f + 1):
-            self.singles = self.singles + [AI(self.game, i)]
+            self.singles = self.singles + [AI(self.game, i, f)]
 
     def get_action(self):
         actions = self.get_singles_actions()
@@ -40,14 +40,16 @@ class AI:
     game = None
     action_history = ""
     n = 0
+    f = 0
     actions = ['R', 'P', 'S']
 
-    def __init__(self, game, n):
+    def __init__(self, game, n, f):
         self.game = game
         self.n = n
+        self.f = f
 
     def get_action(self):
-        recent = self.get_recent_opponent()
+        recent = self.get_recent_opponent(self.n)
         if len(recent) < self.n:
             action = self.get_random()
         else:
@@ -70,16 +72,16 @@ class AI:
     def update_history(self, action):
         self.action_history = self.action_history + action
 
-    def get_recent_self(self):
-        return self.action_history[-self.n:]
+    def get_recent_self(self, n):
+        return self.action_history[-n:]
 
-    def get_recent_opponent(self):
-        return self.game.action_history[-self.n:]
+    def get_recent_opponent(self, n):
+        return self.game.action_history[-n:]
 
     def get_win_rate(self):
         wins = 0
-        recent_self = self.get_recent_self()
-        recent_opponent = self.get_recent_opponent()
+        recent_self = self.get_recent_self(self.f)
+        recent_opponent = self.get_recent_opponent(self.f)
         if len(recent_opponent) < self.n:
             return wins/self.n
         for i in range(0, self.n):
