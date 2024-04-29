@@ -83,8 +83,8 @@ class AI:
         recent_self = self.get_recent_self(self.f)
         recent_opponent = self.get_recent_opponent(self.f)
         if len(recent_opponent) < self.n:
-            return wins/self.n
-        for i in range(0, self.n):
+            return -self.f
+        for i in range(0, min(len(recent_opponent), self.f)):
             action_self = recent_self[i]
             action_opponent = recent_opponent[i]
             wins += self.game.result(action_self, action_opponent)
