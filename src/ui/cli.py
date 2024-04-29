@@ -13,6 +13,10 @@ class CLI:
         while True:
             self.play_round()
 
+    def demo(self):
+        while True:
+            self.play_demo()
+
     def play_round(self):
         user_action = self.action()
         opponent_action = self.opponent_action()
@@ -21,6 +25,13 @@ class CLI:
         self.rounds()
         print("")
 
+    def play_demo(self):
+        opponent_action = self.opponent_action()
+        user_action = self.action()
+        self.result(self.game.play(user_action, opponent_action))
+        self.winlose()
+        self.rounds()
+        print("")
 
     def action(self):
         return input("Type your action: ")
