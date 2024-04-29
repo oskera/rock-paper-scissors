@@ -18,6 +18,7 @@ class CLI:
         opponent_action = self.opponent_action()
         self.result(self.game.play(user_action, opponent_action))
         self.winlose()
+        self.rounds()
         print("")
 
 
@@ -40,3 +41,6 @@ class CLI:
     def winlose(self):
         winlose = self.game.winlose
         print(f"AI winrate is {winlose[0]/sum(winlose)}")
+
+    def rounds(self):
+        print(f"Rounds played: {sum(self.game.winlose)}")
