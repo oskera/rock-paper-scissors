@@ -19,10 +19,11 @@ class CLI:
 
     def play_round(self):
         user_action = self.action()
-        opponent_action = self.opponent_action()
-        self.result(self.game.play(user_action, opponent_action))
-        self.winlose()
-        self.rounds()
+        if self.game.validate(user_action):
+            opponent_action = self.opponent_action()
+            self.result(self.game.play(user_action, opponent_action))
+            self.winlose()
+            self.rounds()
         print("")
 
     def play_demo(self):
