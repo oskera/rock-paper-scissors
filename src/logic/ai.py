@@ -87,9 +87,8 @@ class AI:
         for i in range(0, self.n):
             action_self = recent_self[i]
             action_opponent = recent_opponent[i]
-            if self.game.result(action_self, action_opponent) == 1:
-                wins = wins + 1
-        return wins/self.n
+            wins += self.game.result(action_self, action_opponent)
+        return wins
 
     def count(self, sequence):
         return len(re.findall(f'(?={sequence})', self.game.action_history))
