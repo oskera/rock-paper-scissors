@@ -40,3 +40,7 @@ class TestGame(unittest.TestCase):
     def test_result_ss(self):
         game = Game()
         self.assertEqual(0, game.result("S", "S"))
+
+    def test_play(self):
+        game = Game()
+        self.assertEqual(-1, game.play("R", "P"))
