@@ -2,6 +2,8 @@
 
 ## Documentation
 
+[User Guide](documentation/user_guide.md)
+
 [Specification](documentation/specification.md)
 
 ## Weekly reports
