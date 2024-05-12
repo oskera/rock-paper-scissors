@@ -1,5 +1,5 @@
 import unittest
-from logic.ai import AI, MultiAI
+from logic.ai import MultiAI
 from logic.game import Game
 
 class TestAI(unittest.TestCase):
@@ -8,7 +8,7 @@ class TestAI(unittest.TestCase):
 
     def test_ai_action(self):
         game = Game()
-        ai = AI(game, 1, 1)
+        ai = MultiAI(game, 1)
         for i in range(10):
             game.play("R", ai.get_action())
         self.assertEqual("P", ai.get_action())

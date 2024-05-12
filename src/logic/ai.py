@@ -2,23 +2,29 @@
 
 import random
 import re
+from logic.trie import Trie
 
 
 class MultiAI:
     """AI consisting of multiple single AIs"""
 
+    f = 0
     game = None
+    trie = None
     singles = []
 
     def __init__(self, game, f):
+        self.f = f
         self.game = game
+        self.trie = Trie()
         self.initialize_singles(f)
 
     def initialize_singles(self, f):
         for i in range(1, f + 1):
-            self.singles = self.singles + [AI(self.game, i, f)]
+            self.singles = self.singles + [AI(self.game, self.trie, i, f)]
 
     def get_action(self):
+        self.trie_insert()
         actions = self.get_singles_actions()
         return actions[self.get_best()]
 
@@ -34,17 +40,26 @@ class MultiAI:
             win_rates = win_rates + [ai.get_win_rate()]
         return win_rates.index(max(win_rates))
 
+    def trie_insert(self):
+        self.trie.insert(self.get_recent_opponent())
+
+    def get_recent_opponent(self):
+        return self.game.action_history[-self.f:]
+
+
 class AI:
     """Single AI with n-length memory"""
 
     game = None
+    trie = None
     action_history = ""
     n = 0
     f = 0
     actions = ['R', 'P', 'S']
 
-    def __init__(self, game, n, f):
+    def __init__(self, game, trie, n, f):
         self.game = game
+        self.trie = trie
         self.n = n
         self.f = f
 
@@ -55,7 +70,7 @@ class AI:
         else:
             frequency = [0] * len(self.actions)
             for i in range(0, len(self.actions)):
-                frequency[i] = self.count(recent + self.actions[i])
+                frequency[i] = self.search(recent + self.actions[i])
             next = self.actions[frequency.index(max(frequency))]
             action = self.get_counter(next)
         self.update_history(action)
@@ -90,7 +105,14 @@ class AI:
             wins += self.game.result(action_self, action_opponent)
         return wins
 
+    def search(self, sequence):
+        """Method for searching a sequence in a trie"""
+
+        return self.trie.search(sequence)
+
     def count(self, sequence):
+        """Method for counting frequence of a sequence in game history"""
+
         return len(re.findall(f'(?={sequence})', self.game.action_history))
 
     def get_random(self):
