@@ -80,7 +80,7 @@ class AI:
 
     def get_win_rate(self):
         wins = 0
-        recent_self = self.get_recent_self(self.f)
+        recent_self = self.get_recent_self(self.f + 1)
         recent_opponent = self.get_recent_opponent(self.f)
         if len(recent_opponent) < self.n:
             return -self.f
