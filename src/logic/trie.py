@@ -19,7 +19,7 @@ class Trie:
             if c not in current.children:
                 return 0
             current = current.children[c]
-            return current.frequency
+        return current.frequency
 
 class Node:
 
