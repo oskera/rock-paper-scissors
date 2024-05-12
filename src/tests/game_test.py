@@ -3,7 +3,7 @@ from logic.game import Game
 
 class TestGame(unittest.TestCase):
     def setUp(self):
-        print("Set up goes here")
+        pass
 
     def test_result_rr(self):
         game = Game()
