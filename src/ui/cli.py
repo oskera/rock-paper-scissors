@@ -52,7 +52,10 @@ class CLI:
 
     def winlose(self):
         winlose = self.game.winlose
-        print(f"AI win rate is {(winlose[0]/(winlose[0] + winlose[2])):.1%}")
+        if winlose[0] + winlose[2] == 0:
+            print("AI win rate is 0.0%")
+        else :
+            print(f"AI win rate is {(winlose[0]/(winlose[0] + winlose[2])):.1%}")
 
     def rounds(self):
         print(f"Rounds played: {sum(self.game.winlose)}")
